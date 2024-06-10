@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import { Videos, ChannelCard } from "./";
-import { fetchFromAPI } from "../utils/fetchFromAPI";
+import { fetchFromAPI } from "../Api/fetchFromAPI";
 
 const ChannelDetail = () => {
   const [channelDetail, setChannelDetail] = useState();
@@ -36,7 +36,7 @@ const ChannelDetail = () => {
         <ChannelCard channelDetail={channelDetail} marginTop="-93px" />
       </Box>
       <Box p={2} display="flex">
-      <Box sx={{ mr: { sm: '100px' } }}/>
+        <Box sx={{ mr: { sm: '100px' } }}/>
         <Videos videos={videos} />
       </Box>
     </Box>

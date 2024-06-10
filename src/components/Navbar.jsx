@@ -6,9 +6,11 @@ import MicIcon from '@mui/icons-material/Mic';
 import { styled, alpha } from '@mui/material/styles';
 
 const SearchContainer = styled(Box)(({ theme }) => ({
+  backgroundColor: '#000000' ,
   display: 'flex',
   alignItems: 'center',
-  background: alpha(theme.palette.common.white, 0.15),
+  justifyContent: 'flex-end', // Move the toggler to the right
+  background: alpha(theme.palette.background.paper, 0.15),
   backdropFilter: 'blur(10px)',
   borderRadius: '25px',
   padding: '4px 16px',
@@ -17,7 +19,7 @@ const SearchContainer = styled(Box)(({ theme }) => ({
   boxShadow: '0 2px 15px rgba(0, 0, 0, 0.1)',
   transition: 'box-shadow 0.3s ease-in-out, background 0.3s ease-in-out',
   '&:hover': {
-    background: alpha(theme.palette.common.white, 0.25),
+    background: alpha(theme.palette.background.paper, 0.25),
     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)',
   },
   margin: 'auto',
@@ -28,6 +30,7 @@ const SearchContainer = styled(Box)(({ theme }) => ({
     width: '90%',
   },
 }));
+
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: theme.palette.text.primary,
@@ -84,26 +87,24 @@ const SearchBar = () => {
   return (
     <form onSubmit={handleSubmit} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
       <SearchContainer>
-        <SearchIcon sx={{ color: 'text.secondary', mr: 1, flexShrink: 0 }} />
+        <SearchIcon sx={{ color: 'text.secondary', mr: 1, opacity: 0.7 }} />
         <StyledInputBase
           placeholder="Search videos, channels..."
           inputProps={{ 'aria-label': 'search' }}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        {searchTerm && (
-          <Tooltip title="Search">
-            <SearchButton type="submit" aria-label="search">
-              <SearchIcon />
-            </SearchButton>
-          </Tooltip>
-        )}
+        <Tooltip title="Search">
+          <SearchButton type="submit" aria-label="search">
+            <SearchIcon />
+          </SearchButton>
+        </Tooltip>
+        <Tooltip title="Search with voice">
+          <SearchButton onClick={handleVoiceSearch} aria-label="voice search" sx={{ ml: 1 }}>
+            <MicIcon />
+          </SearchButton>
+        </Tooltip>
       </SearchContainer>
-      <Tooltip title="Search with voice">
-        <SearchButton onClick={handleVoiceSearch} aria-label="voice search" sx={{ ml: 1 }}>
-          <MicIcon />
-        </SearchButton>
-      </Tooltip>
     </form>
   );
 };

@@ -78,7 +78,6 @@ const SearchBar = () => {
   return (
     <form onSubmit={handleSubmit} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
       <SearchContainer sx={{ pr: 1 }}>
-        <SearchIcon sx={{ color: 'text.secondary', mr: 1, opacity: 0.7 }} />
         <StyledInputBase
           placeholder="Search videos, channels..."
           inputProps={{ 'aria-label': 'search' }}
